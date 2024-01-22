@@ -13,13 +13,13 @@ const CurrentTime = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex gap-4">
       <div>
         {String(dayNames[currentTime.getUTCDay()]) +
-          "  " +
-          String(currentTime.getDate()) +
+          "   " +
+          String(currentTime.getDate()).padStart(2, "0") +
           " / " +
-          String(currentTime.getMonth() + 1) +
+          String(currentTime.getMonth() + 1).padStart(2, "0") +
           " / " +
           currentTime.getFullYear()}
       </div>
@@ -30,7 +30,7 @@ const CurrentTime = () => {
           ":" +
           currentTime.getSeconds().toString().padStart(2, "0")}
       </div>
-    </>
+    </div>
   );
 };
 

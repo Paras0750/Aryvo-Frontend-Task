@@ -1,20 +1,20 @@
 import "./App.css";
 import Documents from "./components/documentVerification/documents";
+import DriverDetails from "./components/driverDetails/driverDetails";
 import Navbar from "./components/navbar/navbar";
-import SignupSection from "./components/signup/signup";
 
 function App() {
   return (
     <>
       <Navbar />
       <div>
-        <h4 className="px-4 my-2 font-semibold text-blue-500">
+        <h2 className="px-12 my-2 font-semibold text-blue-500">
           Register Driver
-        </h4>
+        </h2>
         <hr />
       </div>
-      <div className="grid grid-cols-2">
-        <SignupSection />
+      <div className="grid md:grid-cols-2 sm:grid-cols-1">
+        <DriverDetails />
         <Documents />
       </div>
     </>
