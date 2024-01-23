@@ -1,5 +1,5 @@
 import LicenseInformation from "./licenseInformation";
-import SignupSection from "./signup";
+import SignupSection from "./signupDetails";
 import TaxiInfo from "./taxiInfo";
 import VehicleInformation from "./vehicleInformation";
 

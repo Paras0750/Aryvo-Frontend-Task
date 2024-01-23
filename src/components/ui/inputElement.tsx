@@ -1,11 +1,15 @@
+import React from "react";
+
 interface InputElementProps {
   label: string;
   id: string;
   value: string;
+  type?: string;
   className?: string;
   placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: string;
+  icon?: string;
+  iconLocation?: "right" | "left";
 }
 
 export const InputElement = ({
@@ -16,9 +20,11 @@ export const InputElement = ({
   onChange,
   placeholder,
   type = "text",
+  icon,
+  iconLocation,
 }: InputElementProps) => {
   return (
-    <div className="flex-grow cursor-pointer">
+    <div className="flex-grow relative">
       <label htmlFor={id} className="block text-xs font-medium text-gray-700 ">
         {label}
       </label>
@@ -29,8 +35,17 @@ export const InputElement = ({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className={`w-full mt-1 p-2 border rounded ${className} `}
+        className={`w-full mt-1 p-2 border rounded ${className} ${
+          iconLocation === "left" ? "pl-8" : ""
+        }`}
       />
+      <div
+        className={`absolute inset-y-0 ${
+          iconLocation === "right" ? "right-2" : "left-4"
+        } flex items-center pr-2 pointer-events-none top-5 text-gray-500  `}
+      >
+        {icon}
+      </div>
     </div>
   );
 };

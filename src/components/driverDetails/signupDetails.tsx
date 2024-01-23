@@ -63,7 +63,7 @@ const SignupSection = () => {
 
       <hr className="my-4" />
 
-      <div className="flex w-full gap-4">
+      <div className="flex w-full gap-2">
         <InputElement
           label="Accounting Ref"
           id="accountingRef"
@@ -88,12 +88,17 @@ const SignupSection = () => {
           id="commission"
           value={commission}
           onChange={(e) => setCommission(e.target.value)}
+          icon="%"
+          iconLocation="right"
+          // iconLocation="left"
         />
         <InputElement
           label="Weekly Charge"
           id="weeklyCharge"
           value={weeklyCharge}
           onChange={(e) => setWeeklyCharge(e.target.value)}
+          icon="￡"
+          iconLocation="left"
         />
         <InputElement
           label="Driver Group"
