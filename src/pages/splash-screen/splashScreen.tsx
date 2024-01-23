@@ -19,7 +19,7 @@ const SplashScreen = () => {
       clearTimeout(timeoutContent);
       clearTimeout(timeoutRedirect);
     };
-  }, []);
+  }, [showContent, navigate]);
 
   return (
     <div className="relative h-[100vh] w-[100vw] overflow-hidden">

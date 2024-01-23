@@ -79,13 +79,14 @@ const VehicleInformation = () => {
         <div>Wide Car</div>
       </div>
 
-      <InputElement
-        label="Insurance Certificate Number"
-        id="insuranceCertificate"
-        value={insuranceNumber}
-        className="w-1/3"
-        onChange={(e) => setInsuranceNumber(e.target.value)}
-      />
+      <div className="w-1/3">
+        <InputElement
+          label="Insurance Certificate Number"
+          id="insuranceCertificate"
+          value={insuranceNumber}
+          onChange={(e) => setInsuranceNumber(e.target.value)}
+        />
+      </div>
     </div>
   );
 };

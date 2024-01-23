@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
 import logo from "../../assets/fav.png";
+import { auth } from "../../firebase/firebaseAuth";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Signup() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("test@test.com");
+  const [password, setPassword] = useState<string>("test123");
+  const [error, setError] = useState<Error | null>();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(error);
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md px-8 py-6 bg-white rounded shadow-md ">
@@ -23,7 +45,13 @@ export default function Signup() {
         </h2>
         <p className="text-center text-gray-500 mt-1">Welcome Back!</p>
         <div className="mt-8">
-          <form className="grid gap-6 text-md">
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative flex flex-col items-center mb-2">
+              <strong className="font-bold">Error!</strong>
+              <span className="block sm:inline">{error.message}</span>
+            </div>
+          )}
+          <form className="grid gap-6 text-md" onSubmit={handleSubmit}>
             <div className="space-y-1">
               <InputElement
                 id="email"
@@ -40,7 +68,7 @@ export default function Signup() {
                 label="Password"
                 placeholder="Enter Your Password"
                 value={password}
-                type="text"
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>

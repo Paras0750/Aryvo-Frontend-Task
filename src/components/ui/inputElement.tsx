@@ -1,10 +1,10 @@
-import React from "react";
+import React, { HTMLInputTypeAttribute } from "react";
 
 interface InputElementProps {
   label: string;
   id: string;
   value: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   className?: string;
   placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,6 +35,7 @@ export const InputElement = ({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        required
         className={`w-full mt-1 p-2 border rounded ${className} ${
           iconLocation === "left" ? "pl-8" : ""
         }`}

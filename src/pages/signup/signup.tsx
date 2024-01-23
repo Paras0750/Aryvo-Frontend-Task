@@ -1,13 +1,49 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
 import logo from "../../assets/fav.png";
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebaseAuth";
 
 export default function Login() {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("Paras Nauriyal");
+  const [email, setEmail] = useState<string>("test@test.com");
+  const [password, setPassword] = useState<string>("test123");
+  const [confirmPass, setConfirmPass] = useState<string>("test123");
+  const [error, setError] = useState<Error | null>();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+    console.log("Loading Start");
+    e.preventDefault();
+
+    if (password !== confirmPass) {
+      setError(new Error("Passwords do not match!"));
+      return;
+    }
+    
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, { displayName: name });
+        console.log(user);
+        setLoading(false);
+        console.log("Loading End");
+        navigate("/signin");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(error);
+        console.log(error, "  asdfsdf ", errorCode, errorMessage);
+        setLoading(false);
+      });
+  };
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md px-8 py-6 bg-white rounded shadow-md ">
@@ -27,9 +63,13 @@ export default function Login() {
           Join Us on this Journey!
         </p>
         <div className="mt-8">
-          <form
-            className="grid gap-6"
-          >
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative flex flex-col items-center mb-2">
+              <strong className="font-bold">Error!</strong>
+              <span className="block sm:inline">{error.message}</span>
+            </div>
+          )}
+          <form className="grid gap-6" onSubmit={handleSubmit}>
             <div className="space-y-1">
               <InputElement
                 id="name"
@@ -52,25 +92,27 @@ export default function Login() {
             </div>
             <div className="space-y-1">
               <InputElement
-                id="phoneNumber"
-                label="Phone Number"
-                placeholder="Enter Your Phone Number"
-                value={phone}
-                type="text"
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div className="space-y-1">
-              <InputElement
                 id="password"
                 label="Password"
                 placeholder="Enter Your Password"
                 value={password}
-                type="text"
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button className="w-full" type="submit">Sign Up</Button>
+            <div className="space-y-1">
+              <InputElement
+                id="confirmPassword"
+                label="Confirm Password"
+                placeholder="Confirm Your Password"
+                value={confirmPass}
+                type="password"
+                onChange={(e) => setConfirmPass(e.target.value)}
+              />
+            </div>
+            <Button className="w-full" type="submit" disabled={loading}>
+              Sign Up
+            </Button>
           </form>
           <div className="mt-4 text-sm">
             <a href="/signin">Already Have an Account?</a>
