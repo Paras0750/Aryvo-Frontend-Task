@@ -1,15 +1,23 @@
+import { Control, FieldValues } from "react-hook-form";
 import LicenseInformation from "./licenseInformation";
 import SignupSection from "./signupDetails";
-import TaxiInfo from "./taxiInfo";
+
 import VehicleInformation from "./vehicleInformation";
 
-const DriverDetails = () => {
+export interface ControlProps {
+  // eslint-disable-next-line
+  control: Control<FieldValues, any>;
+}
+
+const DriverDetails = ({ control }: ControlProps) => {
   return (
-    <div className="px-12">
-      <SignupSection />
-      <LicenseInformation />
-      <TaxiInfo />
-      <VehicleInformation />
+    <div>
+      <h2 className="px-12 mt-2 text-2xl mb-4">Signup a driver</h2>
+      <div className="px-12 border-r border-gray-200">
+        <SignupSection control={control} />
+        <LicenseInformation control={control} />
+        <VehicleInformation control={control} />
+      </div>
     </div>
   );
 };

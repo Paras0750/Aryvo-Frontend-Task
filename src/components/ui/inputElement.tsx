@@ -10,6 +10,7 @@ interface InputElementProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: string;
   iconLocation?: "right" | "left";
+  max?: number;
 }
 
 export const InputElement = ({
@@ -32,7 +33,7 @@ export const InputElement = ({
         type={type}
         id={id}
         name={id}
-        value={value}
+        value={value || ""}
         placeholder={placeholder}
         onChange={onChange}
         required

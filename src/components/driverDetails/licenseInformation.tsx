@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { Controller } from "react-hook-form";
 import { InputElement } from "../ui/inputElement";
+import { ShadowButton } from "../ui/shadowbutton";
+import { ControlProps } from "./driverDetails";
 
-const LicenseInformation = () => {
-  const [licenseNumber, setLicenseNumber] =
-    useState<string>("TCAEU610267NO9EK");
+const LicenseInformation = ({ control }: ControlProps) => {
   return (
     <div className="my-4 mr-3">
       <div className="flex flex-col">
@@ -13,11 +13,18 @@ const LicenseInformation = () => {
         </div>
         <div className="flex text-sm gap-5">
           <div>
-            <InputElement
-              label="DVLA License"
-              id="licenseNumber"
-              value={licenseNumber}
-              onChange={(e) => setLicenseNumber(e.target.value)}
+            <Controller
+              name="licenseNumber"
+              control={control}
+              defaultValue="TCAEU610267NO9EK"
+              render={({ field }) => (
+                <InputElement
+                  label="DVLA License"
+                  id="licenseNumber"
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+              )}
             />
           </div>
           {/* Hard Coded Values */}
@@ -31,7 +38,7 @@ const LicenseInformation = () => {
           </div>
         </div>
         <div className="flex flex-col my-4 text-xs">
-          <div>Endorsments</div>
+          <div>Endorsements</div>
           <div>
             Legal Literal: Exceeding statutory speed limit on a public road
           </div>
@@ -41,6 +48,63 @@ const LicenseInformation = () => {
       </div>
 
       <hr className="mb-4" />
+
+      <div className="my-4 mr-3">
+        <div className="flex flex-col">
+          <h2 className="text-2xl mb-4">Taxi or PH Badge Information</h2>
+          <div className="flex flex-grow gap-4">
+            <Controller
+              name="driverType"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <InputElement
+                  label="Driver Type"
+                  id="driverType"
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+              )}
+            />
+            {/* Issued By */}
+            <Controller
+              name="issuedBy"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <InputElement
+                  label="Issued By"
+                  id="issuedBy"
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+              )}
+            />
+            {/* Badge Number */}
+            <Controller
+              name="badgeNumber"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <InputElement
+                  label="Badge Number"
+                  id="badgeNumber"
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                  type="number"
+                />
+              )}
+            />
+          </div>
+          <div className="flex gap-4 my-4">
+            <ShadowButton>Safeguarding Certificate </ShadowButton>
+            <ShadowButton>B-TECH</ShadowButton>
+            <ShadowButton>Wheelchair Certif</ShadowButton>
+          </div>
+        </div>
+
+        <hr className="my-4" />
+      </div>
     </div>
   );
 };

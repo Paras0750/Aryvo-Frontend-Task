@@ -5,3 +5,7 @@ body {
   max-height: 100vh;
   max-width: 100vw;
 }
+
+.PhoneInput--focus input {
+  outline: none !important;
+}

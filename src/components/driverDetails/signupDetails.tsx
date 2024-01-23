@@ -1,19 +1,11 @@
-import { useState } from "react";
 import { InputElement } from "../ui/inputElement";
 import Button from "../ui/button";
+import { ControlProps } from "./driverDetails";
+import { Controller } from "react-hook-form";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
-const SignupSection = () => {
-  const [fullName, setFullName] = useState<string>("");
-  const [contactNumber, setContactNumber] = useState<string>("");
-  const [emailAddress, setEmailAddress] = useState<string>("");
-  const [accountingRef, setAccountingRef] = useState<string>("");
-  const [nominalCode, setNominalCode] = useState<string>("");
-  const [callSign, setCallSign] = useState<string>("");
-  const [commission, setCommission] = useState<string>("");
-  const [weeklyCharge, setWeeklyCharge] = useState<string>("");
-  const [driverGroup, setDriverGroup] = useState<string>("");
-  const [homeAddress, handleHomeAddressChange] = useState<string>("");
-
+const SignupSection = ({ control }: ControlProps) => {
   const handleYesButtonClick = () => {
     alert("Yes button clicked");
   };
@@ -21,28 +13,53 @@ const SignupSection = () => {
   return (
     <div className="my-2 mr-3">
       <div className="flex flex-col">
-        <h2 className="text-2xl mb-4">Signup a driver</h2>
-
         <div className="flex w-full gap-3">
-          <InputElement
-            label="Enter Full Name"
-            id="fullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+          <Controller
+            name="fullName"
+            control={control}
+            render={({ field }) => (
+              <InputElement
+                label="Enter Full Name"
+                id="fullName"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+              />
+            )}
           />
-          <InputElement
-            label="Enter Contact Number"
-            id="contactNumber"
-            value={contactNumber}
-            onChange={(e) => setContactNumber(e.target.value)}
-            type="tel"
+          <Controller
+            name="contactNumber"
+            control={control}
+            render={({ field }) => (
+              <div>
+                <label
+                  htmlFor="contactNumber"
+                  className="block text-xs font-medium text-gray-700 "
+                >
+                  Enter Contact Number
+                </label>
+                <PhoneInput
+                  id="contactNumber"
+                  className="focus:outline-none mt-1 p-2 border rounded" // Remove focus:outline-none
+                  defaultCountry="DE"
+                  placeholder="Enter phone number"
+                  value={field.value}
+                  onChange={(value) => field.onChange(value)}
+                />
+              </div>
+            )}
           />
-          <InputElement
-            label="Enter Email Address"
-            id="emailAddress"
-            value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)}
-            type="email"
+          <Controller
+            name="emailAddress"
+            control={control}
+            render={({ field }) => (
+              <InputElement
+                label="Enter Email Address"
+                id="emailAddress"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+                type="tel"
+              />
+            )}
           />
         </div>
 
@@ -64,57 +81,106 @@ const SignupSection = () => {
       <hr className="my-4" />
 
       <div className="flex w-full gap-2">
-        <InputElement
-          label="Accounting Ref"
-          id="accountingRef"
-          value={accountingRef}
-          onChange={(e) => setAccountingRef(e.target.value)}
+        <Controller
+          name="accountingRef"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Accounting Ref"
+              id="accountingRef"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
         />
 
-        <InputElement
-          label="Nominal Code"
-          id="nominalCode"
-          value={nominalCode}
-          onChange={(e) => setNominalCode(e.target.value)}
+        <Controller
+          name="nominalCode"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Nominal Code"
+              id="nominalCode"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
         />
-        <InputElement
-          label="Call Sign"
-          id="callSign"
-          value={callSign}
-          onChange={(e) => setCallSign(e.target.value)}
+
+        <Controller
+          name="callSign"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Call Sign"
+              id="callSign"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
         />
-        <InputElement
-          label="Commission"
-          id="commission"
-          value={commission}
-          onChange={(e) => setCommission(e.target.value)}
-          icon="%"
-          iconLocation="right"
-          // iconLocation="left"
+
+        <Controller
+          name="commission"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Commission"
+              id="commission"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              icon="%"
+              iconLocation="right"
+              type="number"
+            />
+          )}
         />
-        <InputElement
-          label="Weekly Charge"
-          id="weeklyCharge"
-          value={weeklyCharge}
-          onChange={(e) => setWeeklyCharge(e.target.value)}
-          icon="￡"
-          iconLocation="left"
+
+        <Controller
+          name="weeklyCharge"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Weekly Charge"
+              id="weeklyCharge"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              icon="£"
+              iconLocation="left"
+              type="number"
+              max={100}
+            />
+          )}
         />
-        <InputElement
-          label="Driver Group"
-          id="driverGroup"
-          value={driverGroup}
-          onChange={(e) => setDriverGroup(e.target.value)}
-          placeholder="Select all that apply"
+
+        <Controller
+          name="driverGroup"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Driver Group"
+              id="driverGroup"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              placeholder="Select all that apply"
+            />
+          )}
         />
       </div>
       <hr className="my-4" />
       <div>
-        <InputElement
-          label="Enter Home Address"
-          id="homeAddress"
-          value={homeAddress}
-          onChange={(e) => handleHomeAddressChange(e.target.value)}
+        <Controller
+          name="homeAddress"
+          control={control}
+          render={({ field }) => (
+            <InputElement
+              label="Enter Home Address"
+              id="homeAddress"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              placeholder="Select all that apply"
+            />
+          )}
         />
       </div>
       <hr className="my-4" />

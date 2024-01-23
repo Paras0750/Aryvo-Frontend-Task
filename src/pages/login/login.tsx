@@ -10,21 +10,25 @@ export default function Signup() {
   const [email, setEmail] = useState<string>("test@test.com");
   const [password, setPassword] = useState<string>("test123");
   const [error, setError] = useState<Error | null>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
 
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         navigate("/dashboard");
+        setLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(error);
         console.log(errorCode, errorMessage);
+        setLoading(false);
       });
   };
 
@@ -72,7 +76,7 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button className="w-full" type="submit">
+            <Button className="w-full" type="submit" disabled={loading}>
               Sign In
             </Button>
           </form>
