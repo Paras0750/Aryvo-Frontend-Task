@@ -4,7 +4,7 @@ import logo from "../../assets/fav.png"; // Replace with your logo image
 const Footer = () => {
   return (
     <footer className="bg-[#f3f5f8] px-20 py-14 mt-10">
-      <div className="flex flex-col md:flex-row justify-between items-start ">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-5 md:gap-0 ">
         <div className="mb-4 md:mb-0">
           <img src={logo} alt="Logo" className="h-16 w-16" />
         </div>

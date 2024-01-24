@@ -16,7 +16,7 @@ const LicenseInformation = ({ control }: ControlProps) => {
             <Controller
               name="licenseNumber"
               control={control}
-              defaultValue="TCAEU610267NO9EK"
+              defaultValue=""
               render={({ field }) => (
                 <InputElement
                   label="DVLA License"
@@ -34,7 +34,7 @@ const LicenseInformation = ({ control }: ControlProps) => {
               <div>1967-10-26</div>
               <div>Address Match</div>
             </div>
-            <div className="flex flex-col gap-2 xl:flex-row">
+            <div className="flex flex-col xs:flex-col gap-2 xl:flex-row">
               <div>🟢</div>
               <div>Type: Full</div>
               <div>Status: Valid</div>
@@ -75,7 +75,7 @@ const LicenseInformation = ({ control }: ControlProps) => {
                     value={field.value || "hackneyCarriage"}
                     onChange={(e) => field.onChange(e.target.value)}
                     required
-                    className="w-full mt-1 p-2 border rounded appearance-none bg-white focus:outline-none focus:border-blue-500"
+                    className="w-full mt-1 p-2 h-[40px] border rounded appearance-none bg-white focus:outline-none focus:border-blue-500"
                   >
                     <option value="hackneyCarriage">Hackney Carriage</option>
                     <option value="privateHire">Private Hire</option>
@@ -84,13 +84,13 @@ const LicenseInformation = ({ control }: ControlProps) => {
               )}
             />
             <Controller
-              name="issuedBy"
+              name="issuedByBadge"
               control={control}
               defaultValue=""
               render={({ field }) => (
                 <InputElement
                   label="Issued By"
-                  id="issuedBy"
+                  id="issuedByBadge"
                   value={field.value}
                   onChange={(e) => field.onChange(e.target.value)}
                 />

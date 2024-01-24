@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../customHooks/useAuth";
 
 export default function Login() {
-  const [userName, setUserName] = useState<string>("Paras Nauriyal");
-  const [email, setEmail] = useState<string>("test@test.com");
-  const [password, setPassword] = useState<string>("test123");
-  const [confirmPass, setConfirmPass] = useState<string>("test123");
+  const [userName, setUserName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPass, setConfirmPass] = useState<string>("");
   const [error, setError] = useState<Error | null>();
   const [loading, setLoading] = useState<boolean>(false);
   const { signup } = useAuth();
