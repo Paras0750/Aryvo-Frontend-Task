@@ -96,6 +96,34 @@ const VehicleInformation = ({ control }: ControlProps) => {
           <div>DVLA TAX: 09 / 10 / 2023</div>
         </div>
       </div>
+      <div className="flex gap-4 w-2/3 my-4">
+        <Controller
+          name="plateNumber"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <InputElement
+              label="Plate Number"
+              id="bodyType"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
+        />
+        <Controller
+          name="issuedBy"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <InputElement
+              label="Issued By"
+              id="bodyType"
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+            />
+          )}
+        />
+      </div>
       <div className="flex flex-col text-xs gap-2 my-4">
         <div className="flex items-center gap-4">
           PPE Barrier:

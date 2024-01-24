@@ -4,6 +4,7 @@ import { ControlProps } from "./driverDetails";
 import { Controller } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const SignupSection = ({ control }: ControlProps) => {
   const handleYesButtonClick = () => {
@@ -111,12 +112,21 @@ const SignupSection = ({ control }: ControlProps) => {
           name="callSign"
           control={control}
           render={({ field }) => (
-            <InputElement
-              label="Call Sign"
-              id="callSign"
-              value={field.value}
-              onChange={(e) => field.onChange(e.target.value)}
-            />
+            <>
+              <ReactTooltip
+                id="my-tooltip-1"
+                place="top"
+                content="Set a Call Sign"
+                className="bg-blue-500 text-white"
+              />
+              <InputElement
+                label="Call Sign"
+                tooltipId="my-tooltip-1"
+                id="callSign"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+              />
+            </>
           )}
         />
 
@@ -124,15 +134,24 @@ const SignupSection = ({ control }: ControlProps) => {
           name="commission"
           control={control}
           render={({ field }) => (
-            <InputElement
-              label="Commission"
-              id="commission"
-              value={field.value}
-              onChange={(e) => field.onChange(e.target.value)}
-              icon="%"
-              iconLocation="right"
-              type="number"
-            />
+            <>
+              <ReactTooltip
+                id="my-tooltip-2"
+                place="top"
+                content="Commission per ride"
+                className="bg-blue-500 text-white"
+              />
+              <InputElement
+                label="Commission"
+                tooltipId="my-tooltip-2"
+                id="commission"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+                icon="%"
+                iconLocation="right"
+                type="number"
+              />
+            </>
           )}
         />
 
@@ -174,7 +193,8 @@ const SignupSection = ({ control }: ControlProps) => {
           control={control}
           render={({ field }) => (
             <InputElement
-              label="Enter Home Address"
+              manualEntry
+              label="Home Address"
               id="homeAddress"
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}

@@ -62,15 +62,27 @@ const LicenseInformation = ({ control }: ControlProps) => {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <InputElement
-                  label="Driver Type"
-                  id="driverType"
-                  value={field.value}
-                  onChange={(e) => field.onChange(e.target.value)}
-                />
+                <div className="flex-grow relative">
+                  <label
+                    htmlFor="driverType"
+                    className="block text-xs font-medium text-gray-700"
+                  >
+                    Driver Type
+                  </label>
+                  <select
+                    id="driverType"
+                    name="driverType"
+                    value={field.value || "hackneyCarriage"}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    required
+                    className="w-full mt-1 p-2 border rounded appearance-none bg-white focus:outline-none focus:border-blue-500"
+                  >
+                    <option value="hackneyCarriage">Hackney Carriage</option>
+                    <option value="privateHire">Private Hire</option>
+                  </select>
+                </div>
               )}
             />
-            {/* Issued By */}
             <Controller
               name="issuedBy"
               control={control}
@@ -84,7 +96,6 @@ const LicenseInformation = ({ control }: ControlProps) => {
                 />
               )}
             />
-            {/* Badge Number */}
             <Controller
               name="badgeNumber"
               control={control}
@@ -101,9 +112,45 @@ const LicenseInformation = ({ control }: ControlProps) => {
             />
           </div>
           <div className="flex gap-4 my-4">
-            <ShadowButton>Safeguarding Certificate </ShadowButton>
-            <ShadowButton>B-TECH</ShadowButton>
-            <ShadowButton>Wheelchair Certif</ShadowButton>
+            <Controller
+              name="safeguardingCertificate"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <ShadowButton
+                  value={field.value}
+                  handlerFunction={() => field.onChange(!field.value)}
+                >
+                  Safeguarding Certificate
+                </ShadowButton>
+              )}
+            />
+            <Controller
+              name="BTECH"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <ShadowButton
+                  value={field.value}
+                  handlerFunction={() => field.onChange(!field.value)}
+                >
+                  B-TECH
+                </ShadowButton>
+              )}
+            />
+            <Controller
+              name="wheelchairCertif"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <ShadowButton
+                  value={field.value}
+                  handlerFunction={() => field.onChange(!field.value)}
+                >
+                  Wheelchair Certif
+                </ShadowButton>
+              )}
+            />
           </div>
         </div>
 

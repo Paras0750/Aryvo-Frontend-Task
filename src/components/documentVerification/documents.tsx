@@ -1,6 +1,15 @@
+import { FieldValues, UseFormGetValues } from "react-hook-form";
 import FileUploadForm from "../ui/fileUploadForm";
+import { useEffect } from "react";
+interface Props {
+  getValues: UseFormGetValues<FieldValues>;
+}
+const Documents = ({ getValues }: Props) => {
+  const driverType = getValues("driverType");
+  useEffect(() => {
+    console.log("asdf: ", driverType);
+  }, [driverType]);
 
-const Documents = () => {
   return (
     <div className="px-4 my-2">
       <div className="flex flex-col">
@@ -11,8 +20,12 @@ const Documents = () => {
           <FileUploadForm required innerText={"Insurance Certificate"} />
           <FileUploadForm required innerText={"Proof of Address"} />
           <FileUploadForm required innerText={"Vehicle Plate"} />
-          <FileUploadForm innerText={"Hackney Badge Licence"} />
-          <FileUploadForm innerText={"Private Hire Badge Licence"} />
+          {driverType === "privateHire" ? (
+            <FileUploadForm required innerText={"Private Hire Badge Licence"} />
+          ) : (
+            <FileUploadForm required innerText={"Hackney Badge Licence"} />
+          )}
+          {/* <FileUploadForm innerText={"Private Hire Badge Licence"} /> */}
           <FileUploadForm innerText={"Operators License"} />
           <FileUploadForm innerText={"Public Liability"} />
           <FileUploadForm innerText={"Employers Liability"} />
