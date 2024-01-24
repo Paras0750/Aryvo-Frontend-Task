@@ -80,7 +80,7 @@ const SignupSection = ({ control }: ControlProps) => {
 
       <hr className="my-4" />
 
-      <div className="flex w-full gap-2">
+      <div className="flex w-full gap-1">
         <Controller
           name="accountingRef"
           control={control}
@@ -178,7 +178,6 @@ const SignupSection = ({ control }: ControlProps) => {
               id="homeAddress"
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}
-              placeholder="Select all that apply"
             />
           )}
         />

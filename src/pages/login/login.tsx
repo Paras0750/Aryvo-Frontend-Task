@@ -2,15 +2,15 @@ import { FormEvent, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
 import logo from "../../assets/fav.png";
-import { auth } from "../../firebase/firebaseAuth";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../../customHooks/useAuth";
 
 export default function Signup() {
   const [email, setEmail] = useState<string>("test@test.com");
   const [password, setPassword] = useState<string>("test123");
   const [error, setError] = useState<Error | null>();
   const [loading, setLoading] = useState<boolean>(false);
+  const { signin } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,16 +18,17 @@ export default function Signup() {
     setLoading(true);
     e.preventDefault();
 
-    await signInWithEmailAndPassword(auth, email, password)
+    signin({ email, password })
       .then(() => {
         navigate("/dashboard");
-        setLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(error);
         console.log(errorCode, errorMessage);
+      })
+      .finally(() => {
         setLoading(false);
       });
   };

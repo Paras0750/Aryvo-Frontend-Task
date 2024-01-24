@@ -13,7 +13,7 @@ const Documents = () => {
           <FileUploadForm required innerText={"Proof of Address"} />
           <FileUploadForm required innerText={"Vehicle Plate"} />
           <FileUploadForm innerText={"Hackney Badge Licence"} />
-          <FileUploadForm innerText={"Private Hire Badge LicencE"} />
+          <FileUploadForm innerText={"Private Hire Badge Licence"} />
           <FileUploadForm innerText={"Operators License"} />
           <FileUploadForm innerText={"Public Liability"} />
           <FileUploadForm innerText={"Employers Liability"} />

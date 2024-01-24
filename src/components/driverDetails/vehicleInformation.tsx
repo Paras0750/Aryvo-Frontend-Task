@@ -105,10 +105,12 @@ const VehicleInformation = ({ control }: ControlProps) => {
             defaultValue={false}
             render={({ field }) => (
               <CheckBox
-                checked={field.value}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  field.onChange(e.target.value)
-                }
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
               />
             )}
           />
@@ -121,9 +123,12 @@ const VehicleInformation = ({ control }: ControlProps) => {
             defaultValue={false}
             render={({ field }) => (
               <CheckBox
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  field.onChange(e.target.value)
-                }
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
               />
             )}
           />

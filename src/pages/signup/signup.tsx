@@ -3,16 +3,16 @@ import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
 import logo from "../../assets/fav.png";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../firebase/firebaseAuth";
+import { useAuth } from "../../customHooks/useAuth";
 
 export default function Login() {
-  const [name, setName] = useState<string>("Paras Nauriyal");
+  const [userName, setUserName] = useState<string>("Paras Nauriyal");
   const [email, setEmail] = useState<string>("test@test.com");
   const [password, setPassword] = useState<string>("test123");
   const [confirmPass, setConfirmPass] = useState<string>("test123");
   const [error, setError] = useState<Error | null>();
   const [loading, setLoading] = useState<boolean>(false);
+  const { signup } = useAuth();
 
   const navigate = useNavigate();
 
@@ -25,21 +25,17 @@ export default function Login() {
       setError(new Error("Passwords do not match!"));
       return;
     }
-    
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        updateProfile(user, { displayName: name });
-        console.log(user);
+
+    await signup({ email, password, userName })
+      .then(() => {
         setLoading(false);
-        console.log("Loading End");
         navigate("/signin");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(error);
-        console.log(error, "  asdfsdf ", errorCode, errorMessage);
+        console.log(error, errorCode, errorMessage);
         setLoading(false);
       });
   };
@@ -72,12 +68,12 @@ export default function Login() {
           <form className="grid gap-6" onSubmit={handleSubmit}>
             <div className="space-y-1">
               <InputElement
-                id="name"
+                id="userName"
                 label="Name"
                 placeholder="Enter Your Name"
-                value={name}
+                value={userName}
                 type="text"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
             <div className="space-y-1">
