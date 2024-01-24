@@ -49,7 +49,7 @@ const Navbar = ({ displayName }: Props) => {
       await logout();
       navigate("/signin");
     } catch (e) {
-      console.log(e);
+      alert(`Error: ${e} `);
     }
   };
 

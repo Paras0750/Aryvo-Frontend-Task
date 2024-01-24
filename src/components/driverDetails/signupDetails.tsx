@@ -8,7 +8,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const SignupSection = ({ control }: ControlProps) => {
   const handleYesButtonClick = () => {
-    alert("Yes button clicked");
+    console.log("Clicked Yes Button");
   };
 
   return (

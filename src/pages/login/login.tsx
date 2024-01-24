@@ -23,10 +23,7 @@ export default function Signup() {
         navigate("/dashboard");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         setError(error);
-        console.log(errorCode, errorMessage);
       })
       .finally(() => {
         setLoading(false);

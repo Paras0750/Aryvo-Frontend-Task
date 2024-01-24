@@ -7,7 +7,7 @@ interface Props {
 const Documents = ({ getValues }: Props) => {
   const driverType = getValues("driverType");
   useEffect(() => {
-    console.log("asdf: ", driverType);
+
   }, [driverType]);
 
   return (

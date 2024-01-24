@@ -32,10 +32,7 @@ export default function Login() {
         navigate("/signin");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         setError(error);
-        console.log(error, errorCode, errorMessage);
         setLoading(false);
       });
   };

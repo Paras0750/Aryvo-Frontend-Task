@@ -39,8 +39,8 @@ const Dashboard = () => {
       await setDoc(specificDocRef, watchedValues);
       console.log("Data successfully added to Firestore");
       navigate("/success");
-    } catch (error) {
-      console.error("Error adding data to Firestore:", error);
+    } catch (error: unknown) {
+      alert(`Error adding data to Firestore: ${error}`);
     } finally {
       setLoading(false);
     }

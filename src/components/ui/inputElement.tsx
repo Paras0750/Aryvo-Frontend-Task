@@ -30,7 +30,7 @@ export const InputElement = ({
 }: InputElementProps) => {
   return (
     <div className="flex-grow relative">
-      <div className="flex justify-between">
+      <div className="flex">
         <label
           htmlFor={id}
           className="block text-xs font-medium text-gray-700 "
@@ -49,14 +49,16 @@ export const InputElement = ({
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            className="lucide lucide-message-circle-question"
+            className="lucide lucide-message-circle-question ml-1"
           >
             <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
             <path d="M12 17h.01" />
           </svg>
         )}
-        {manualEntry && <div>Click for manual entry</div>}
+        {manualEntry && (
+          <div className="ml-10 text-xs">Click for manual entry</div>
+        )}
       </div>
       <input
         type={type}
