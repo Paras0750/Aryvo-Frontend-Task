@@ -31,7 +31,11 @@ const navMenu = [
   },
 ];
 
-const Navbar = ({ displayName }) => {
+interface Props {
+  displayName: string | null | undefined;
+}
+
+const Navbar = ({ displayName }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSettingDropdownOpen, setIsSettingDropdownOpen] = useState(false);
   const { logout } = useAuth();
@@ -102,7 +106,7 @@ const Navbar = ({ displayName }) => {
               isDropdownOpen ? "" : "hidden"
             }`}
           >
-            <ul className="space-y-2">
+            <ul className="space-y-2" onClick={() => toggleDropdown()}>
               <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">
                 Option 1
               </li>

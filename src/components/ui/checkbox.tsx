@@ -1,6 +1,6 @@
 interface CheckBoxProps {
   value: boolean;
-  onChangeFn: () => void;
+  onChangeFn: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const CheckBox = ({ value, onChangeFn }: CheckBoxProps) => {

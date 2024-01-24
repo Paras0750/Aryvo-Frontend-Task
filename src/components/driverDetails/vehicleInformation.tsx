@@ -133,10 +133,78 @@ const VehicleInformation = ({ control }: ControlProps) => {
             )}
           />
         </div>
-        <div>Premium Vehicle</div>
-        <div>Hackney Carriage</div>
-        <div>Pets</div>
-        <div>Wide Car</div>
+        <div className="flex items-center gap-4">
+          Premium Vehicle:
+          <Controller
+            name="remiumVehicle"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <CheckBox
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          Hackney Carriage:
+          <Controller
+            name="hackneyCarriage"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <CheckBox
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          Pets:
+          <Controller
+            name="pets"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <CheckBox
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          Wide Car:
+          <Controller
+            name="wideCar"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <CheckBox
+                value={field.value}
+                onChangeFn={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  field.value
+                    ? field.onChange(!e.target.value)
+                    : field.onChange(e.target.value);
+                }}
+              />
+            )}
+          />
+        </div>
       </div>
 
       <div className="w-1/3">
