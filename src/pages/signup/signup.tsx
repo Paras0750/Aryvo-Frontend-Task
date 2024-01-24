@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
-import logo from "../../assets/fav.png";
+import logo from "../../assets/aryvo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../customHooks/useAuth";
 
@@ -43,10 +43,8 @@ export default function Login() {
         <div className="flex justify-center">
           <img
             alt="Aryvo Logo"
-            className="w-16 h-16 mb-5"
-            height="64"
+            className="w-[200px] h-20 mb-5"
             src={logo}
-            width="64"
           />
         </div>
         <h2 className="text-3xl font-semibold text-center text-gray-700 ">

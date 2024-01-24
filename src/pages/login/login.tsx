@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
-import logo from "../../assets/fav.png";
+import logo from "../../assets/aryvo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../customHooks/useAuth";
 
@@ -34,13 +34,7 @@ export default function Signup() {
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md px-8 py-6 bg-white rounded shadow-md ">
         <div className="flex justify-center">
-          <img
-            alt="Aryvo Logo"
-            className="w-16 h-16 mb-5"
-            height="64"
-            src={logo}
-            width="64"
-          />
+          <img alt="Aryvo Logo" className="w-[200px] h-20 mb-5" src={logo} />
         </div>
         <h2 className="text-3xl font-semibold text-center text-gray-700 ">
           Sign In
