@@ -13,7 +13,7 @@ export const Success = () => {
               Your Form was successfully submitted!
             </p>
             <p className=" mb-4">
-              You'll receive an email if you've been approved.
+              You'll receive an email if you are approved.
             </p>
           </div>
           <p className="text-sm">

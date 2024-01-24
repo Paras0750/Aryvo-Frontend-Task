@@ -13,7 +13,7 @@ const Documents = ({ getValues }: Props) => {
   return (
     <div className="px-4 my-2">
       <div className="flex flex-col">
-        <h2 className="text-2xl mb-4">Document and Expiry Dates</h2>
+        <h2 className="text-2xl mb-4">Documents and Expiry Dates</h2>
         <div className="flex flex-col gap-3">
           <FileUploadForm required innerText={"DVLA Licence"} />
           <FileUploadForm required innerText={"Compliance Certificate"} />

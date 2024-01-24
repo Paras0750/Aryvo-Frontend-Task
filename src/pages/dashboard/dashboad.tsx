@@ -18,9 +18,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (!currentUser) {
-    //   navigate("/signin");
-    // }
+    if (!currentUser) {
+      navigate("/signin");
+    }
   }, [currentUser, navigate]);
 
   const displayName = currentUser?.displayName;
