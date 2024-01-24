@@ -13,22 +13,24 @@ const CurrentTime = () => {
   }, []);
 
   return (
-    <div className="flex gap-4">
-      <div>
-        {String(dayNames[currentTime.getUTCDay()]) +
-          "   " +
-          String(currentTime.getDate()).padStart(2, "0") +
-          " / " +
-          String(currentTime.getMonth() + 1).padStart(2, "0") +
-          " / " +
-          currentTime.getFullYear()}
-      </div>
-      <div>
-        {currentTime.getHours().toString().padStart(2, "0") +
-          ":" +
-          currentTime.getMinutes().toString().padStart(2, "0") +
-          ":" +
-          currentTime.getSeconds().toString().padStart(2, "0")}
+    <div className="hidden xl:block">
+      <div className="flex gap-4">
+        <div>
+          {String(dayNames[currentTime.getUTCDay()]) +
+            "   " +
+            String(currentTime.getDate()).padStart(2, "0") +
+            " / " +
+            String(currentTime.getMonth() + 1).padStart(2, "0") +
+            " / " +
+            currentTime.getFullYear()}
+        </div>
+        <div>
+          {currentTime.getHours().toString().padStart(2, "0") +
+            ":" +
+            currentTime.getMinutes().toString().padStart(2, "0") +
+            ":" +
+            currentTime.getSeconds().toString().padStart(2, "0")}
+        </div>
       </div>
     </div>
   );

@@ -11,9 +11,9 @@ const SignupSection = ({ control }: ControlProps) => {
   };
 
   return (
-    <div className="my-2 mr-3">
+    <div className="my-2 mr-3 px-4">
       <div className="flex flex-col">
-        <div className="flex w-full gap-3">
+        <div className="flex w-full gap-3 flex-col sm:flex-row">
           <Controller
             name="fullName"
             control={control}
@@ -30,7 +30,7 @@ const SignupSection = ({ control }: ControlProps) => {
             name="contactNumber"
             control={control}
             render={({ field }) => (
-              <div>
+              <div className="flex-grow relative">
                 <label
                   htmlFor="contactNumber"
                   className="block text-xs font-medium text-gray-700 "
@@ -39,7 +39,7 @@ const SignupSection = ({ control }: ControlProps) => {
                 </label>
                 <PhoneInput
                   id="contactNumber"
-                  className="focus:outline-none mt-1 p-2 border rounded" // Remove focus:outline-none
+                  className="focus:outline-none mt-1 p-2 border rounded "
                   defaultCountry="DE"
                   placeholder="Enter phone number"
                   value={field.value}
@@ -63,7 +63,7 @@ const SignupSection = ({ control }: ControlProps) => {
           />
         </div>
 
-        <div className="flex mt-4">
+        <div className="flex mt-4 flex-col md:flex-row">
           <div className="text-blue-500 text-xs">
             <p>
               An account already exists with these contact details, you need to
@@ -80,7 +80,7 @@ const SignupSection = ({ control }: ControlProps) => {
 
       <hr className="my-4" />
 
-      <div className="flex w-full gap-1">
+      <div className="grid w-full gap-1 grid-cols-1 lg:grid-cols-3 xl:grid-cols-6">
         <Controller
           name="accountingRef"
           control={control}

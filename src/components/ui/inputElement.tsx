@@ -43,7 +43,7 @@ export const InputElement = ({
       />
       <div
         className={`absolute inset-y-0 ${
-          iconLocation === "right" ? "right-2" : "left-4"
+          iconLocation === "right" ? "right-3" : "left-4"
         } flex items-center pr-2 pointer-events-none top-5 text-gray-500  `}
       >
         {icon}

@@ -5,13 +5,13 @@ import { ControlProps } from "./driverDetails";
 
 const LicenseInformation = ({ control }: ControlProps) => {
   return (
-    <div className="my-4 mr-3">
+    <div className="my-4 mr-3 px-4">
       <div className="flex flex-col">
         <div className="flex items-center gap-5 mb-4">
           <h2 className="text-2xl ">License Information</h2>
           <div className="text-xs ml-4">Click for manual entry</div>
         </div>
-        <div className="flex text-sm gap-5">
+        <div className="flex text-sm gap-5 flex-col md:flex-row">
           <div>
             <Controller
               name="licenseNumber"
@@ -29,12 +29,16 @@ const LicenseInformation = ({ control }: ControlProps) => {
           </div>
           {/* Hard Coded Values */}
           <div className="flex gap-2 text-sm items-center whitespace-nowrap">
-            <div>Male</div>
-            <div>1967-10-26</div>
-            <div>Address Match</div>
-            <div>🟢</div>
-            <div>Type: Full</div>
-            <div>Status: Valid</div>
+            <div className="flex flex-col gap-2 xl:flex-row">
+              <div>Male</div>
+              <div>1967-10-26</div>
+              <div>Address Match</div>
+            </div>
+            <div className="flex flex-col gap-2 xl:flex-row">
+              <div>🟢</div>
+              <div>Type: Full</div>
+              <div>Status: Valid</div>
+            </div>
           </div>
         </div>
         <div className="flex flex-col my-4 text-xs">

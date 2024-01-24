@@ -1,4 +1,3 @@
-import Button from "../ui/button";
 import FileUploadForm from "../ui/fileUploadForm";
 
 const Documents = () => {
@@ -19,10 +18,6 @@ const Documents = () => {
           <FileUploadForm innerText={"Employers Liability"} />
           <FileUploadForm required innerText={"Form B"} />
           <FileUploadForm required innerText={"Enhanced DBS"} />
-
-          <Button className="w-[110px] mt-20" type="submit">
-            <span className="text-white">Submit</span>
-          </Button>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const Footer = () => {
           <p>Arena Business Centre, </p>
           <p>Southampton SO14 3LP, UK</p>
           <p>02380555555</p>
-          <p>support@ayvo.com</p>
+          <p>support@aryvo.com</p>
         </div>
 
         <div className="mb-4 md:mb-0">

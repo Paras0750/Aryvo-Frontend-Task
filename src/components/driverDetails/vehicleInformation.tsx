@@ -5,7 +5,7 @@ import { ControlProps } from "./driverDetails";
 
 const VehicleInformation = ({ control }: ControlProps) => {
   return (
-    <div className="my-4 mr-3">
+    <div className="my-4 mr-3 px-4">
       <div className="flex flex-col">
         <div className="flex items-center gap-5 mb-4">
           <h2 className="text-2xl ">Vehicle Information</h2>
@@ -27,7 +27,7 @@ const VehicleInformation = ({ control }: ControlProps) => {
               )}
             />
           </div>
-          <div className="grid grid-cols-6 text-xs gap-2">
+          <div className="grid grid-cols-6 text-xs gap-1">
             <div>Make: Rover</div>
             <div>Color: Blue</div>
             <div>Year: 2020</div>

@@ -54,31 +54,29 @@ const Navbar = ({ displayName }: Props) => {
   };
 
   return (
-    <div className="flex items-center justify-between h-[70px] bg-[#f3f5f8] px-6 md:px-12">
+    <div className="flex items-center justify-between h-[70px] bg-[#f3f5f8] px-6 md:px-12 ">
       <div className="flex items-center gap-3 md:gap-5">
         <div className="w-[60px] md:w-[80px]">
           <img src={aryvoPng} alt="icon" />
         </div>
         <div className="flex gap-2 items-center ">
           {navMenu.map((item) => (
-            <div
-              key={item.name}
-              className="hidden md:block sm:hidden xs:hidden"
-            >
+            <div key={item.name} className="hidden md:block ">
               {item.name}
             </div>
           ))}
         </div>
-        <div className="md:hidden sm:flex xs:flex">
-          <input
-            type="text"
-            placeholder="Search"
-            className="px-2 py-1 w-[120px] border rounded-full"
-          />
-        </div>
+
+        <input
+          type="text"
+          placeholder="Search"
+          className="px-2 py-1  border rounded-full hidden lg:block"
+        />
       </div>
       <div className="flex gap-2 md:gap-4 mr-3 items-center text-sm">
-        <CurrentTime />
+        <div className="hidden lg:block">
+          <CurrentTime />
+        </div>
 
         <div className="relative">
           <div

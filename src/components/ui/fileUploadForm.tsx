@@ -30,9 +30,9 @@ const FileUploadForm = ({
     }
   };
   return (
-    <div className="flex items-center gap-7 ">
+    <div className="flex flex-col md:flex-row items-center gap-5">
       <ShadowButton
-        className={`w-[200px] ${className} h-[40px] cursor-pointer`}
+        className={`w-[50%] ${className} h-[40px] cursor-pointer`}
         handlerFunction={handleLabelClick}
       >
         <label htmlFor="fileInput" className="flex justify-between ">
@@ -64,10 +64,16 @@ const FileUploadForm = ({
           </div>
         </label>
       </ShadowButton>
-      <div className="mx-5">20/04/2024</div>
-      <div>57 days</div>
-      <div className="text-blue-500 ">View</div>
-      {required && <div className="text-red-500 ">Required</div>}
+      <div className="flex gap-2 mb-5 ">
+        <div className="flex gap-2 px-4">
+          <div>20/04/2024</div>
+          <div>57 days</div>
+          <div className="text-blue-500 ">View</div>
+        </div>
+        <div className="flex gap-2">
+          {required && <div className="text-red-500 ">Required</div>}
+        </div>
+      </div>
     </div>
   );
 };
