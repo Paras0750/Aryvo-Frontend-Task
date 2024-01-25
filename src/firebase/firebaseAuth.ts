@@ -9,3 +9,8 @@ import firebaseConfig from "./firebaseConfig";
 export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+export enum ApplicationStatus {
+    Pending = "pending",
+    NotApplied = "notApplied"
+}

@@ -11,6 +11,7 @@ import DriverDetails from "../../components/driverDetails/driverDetails";
 import Documents from "../../components/documentVerification/documents";
 import Footer from "../../components/footer/footer";
 import Button from "../../components/ui/button";
+import { ApplicationStatus } from "../../firebase/firebaseAuth";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!currentUser) {
+    const status = localStorage.getItem("status");
+    if (!status || status == "") {
       navigate("/signin");
     }
   }, [currentUser, navigate]);
@@ -38,6 +40,7 @@ const Dashboard = () => {
       const specificDocRef = doc(driverDataCollection, specificId);
       await setDoc(specificDocRef, watchedValues);
       console.log("Data successfully added to Firestore");
+      localStorage.setItem("status", ApplicationStatus.Pending);
       navigate("/success");
     } catch (error: unknown) {
       alert(`Error adding data to Firestore: ${error}`);

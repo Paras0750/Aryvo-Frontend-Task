@@ -4,6 +4,7 @@ import Button from "../../components/ui/button";
 import logo from "../../assets/aryvo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../customHooks/useAuth";
+import { ApplicationStatus } from "../../firebase/firebaseAuth";
 
 export default function Signup() {
   const [email, setEmail] = useState<string>("");
@@ -20,6 +21,7 @@ export default function Signup() {
 
     signin({ email, password })
       .then(() => {
+        localStorage.setItem("status", ApplicationStatus.NotApplied);
         navigate("/dashboard");
       })
       .catch((error) => {

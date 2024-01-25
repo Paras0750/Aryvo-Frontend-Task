@@ -47,6 +47,7 @@ const Navbar = ({ displayName }: Props) => {
   const handleLogout = async () => {
     try {
       await logout();
+      localStorage.setItem("status", "")
       navigate("/signin");
     } catch (e) {
       alert(`Error: ${e} `);
