@@ -20,7 +20,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     const status = localStorage.getItem("status");
-    if (!status || status == "") {
+
+    if (!status || status == "" && !currentUser) {
       navigate("/signin");
     }
   }, [currentUser, navigate]);
