@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useRef } from "react";
+import { useState, ChangeEvent } from "react";
 import { ShadowButton } from "./shadowbutton";
 
 interface FileUploadFormProps {
@@ -13,36 +13,25 @@ const FileUploadForm = ({
   required = false,
 }: FileUploadFormProps) => {
   const [file, setFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
-      console.log("selectedFile", file);
     }
   };
-  const handleLabelClick = () => {
-    // Simulate a click on the file input when label area is clicked
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
+
   return (
     <div className="flex flex-col md:flex-row items-center gap-5">
-      <ShadowButton
-        className={`w-[50%] ${className} h-[40px] cursor-pointer`}
-        handlerFunction={handleLabelClick}
-      >
-        <label htmlFor="fileInput" className="flex justify-between ">
+      <ShadowButton className={`w-[50%] ${className} h-[40px] `}>
+        <label className="flex justify-between cursor-pointer">
           <input
             type="file"
-            id="fileInput"
+            id={innerText}
             accept=".pdf, .jpg, .jpeg, .png"
             onChange={handleFileChange}
-            hidden
-            ref={fileInputRef}
+            className="absolute overflow-hidden opacity-0 cursor-pointer"
           />
           <div className="">{innerText}</div>
           <div className="text-xs">
@@ -68,11 +57,27 @@ const FileUploadForm = ({
         <div className="flex gap-2 px-4">
           <div>20/04/2024</div>
           <div>57 days</div>
-          <div className="text-blue-500 ">View</div>
         </div>
-        <div className="flex gap-2">
-          {required && <div className="text-red-500 ">Required</div>}
-        </div>
+        {file ? (
+          <div className="flex gap-2">
+            <div
+              className="text-blue-500 cursor-pointer"
+              onClick={() => window.open(URL.createObjectURL(file))}
+            >
+              View
+            </div>
+            <div
+              className="text-red-500 cursor-pointer"
+              onClick={() => setFile(null)}
+            >
+              Remove
+            </div>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            {required && <div className="text-red-500 ">Required</div>}
+          </div>
+        )}
       </div>
     </div>
   );

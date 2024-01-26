@@ -17,7 +17,6 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  console.log("currentUser", currentUser);
   
   useEffect(() => {
     const logedIn = localStorage.getItem("isAuthenticated");

@@ -18,7 +18,6 @@ export default function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
-    console.log("Loading Start");
     e.preventDefault();
 
     if (password !== confirmPass) {
