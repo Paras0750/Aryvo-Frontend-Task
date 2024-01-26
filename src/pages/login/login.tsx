@@ -1,10 +1,9 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { InputElement } from "../../components/ui/inputElement";
 import Button from "../../components/ui/button";
 import logo from "../../assets/aryvo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../customHooks/useAuth";
-import { ApplicationStatus } from "../../firebase/firebaseAuth";
 
 export default function Signup() {
   const [email, setEmail] = useState<string>("");
@@ -15,13 +14,20 @@ export default function Signup() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const logedIn = localStorage.getItem("isAuthenticated");
+    if (logedIn === "true") {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
 
     signin({ email, password })
       .then(() => {
-        localStorage.setItem("status", ApplicationStatus.NotApplied);
+        localStorage.setItem("isAuthenticated", "true");
         navigate("/dashboard");
       })
       .catch((error) => {

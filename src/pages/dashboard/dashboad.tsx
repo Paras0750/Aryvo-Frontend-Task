@@ -17,11 +17,11 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-
+  console.log("currentUser", currentUser);
+  
   useEffect(() => {
-    const status = localStorage.getItem("status");
-
-    if (!status || status == "" && !currentUser) {
+    const logedIn = localStorage.getItem("isAuthenticated");
+    if (logedIn !== "true") {
       navigate("/signin");
     }
   }, [currentUser, navigate]);
@@ -39,9 +39,12 @@ const Dashboard = () => {
     try {
       const specificId = String(currentUser?.uid);
       const specificDocRef = doc(driverDataCollection, specificId);
-      await setDoc(specificDocRef, watchedValues);
+      const watchedValuesWithStatus = {
+        ...watchedValues,
+        status: ApplicationStatus.Pending,
+      };
+      await setDoc(specificDocRef, watchedValuesWithStatus);
       console.log("Data successfully added to Firestore");
-      localStorage.setItem("status", ApplicationStatus.Pending);
       navigate("/success");
     } catch (error: unknown) {
       alert(`Error adding data to Firestore: ${error}`);

@@ -47,7 +47,7 @@ const Navbar = ({ displayName }: Props) => {
   const handleLogout = async () => {
     try {
       await logout();
-      localStorage.setItem("status", "")
+      localStorage.setItem("isAuthenticated", "");
       navigate("/signin");
     } catch (e) {
       alert(`Error: ${e} `);

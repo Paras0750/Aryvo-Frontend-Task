@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import { auth } from "../firebase/firebaseAuth";
+import { ApplicationStatus, auth } from "../firebase/firebaseAuth";
 import {
   User,
   UserCredential,
@@ -15,6 +15,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { driverDataCollection } from "../firebase/firebaseConfig";
 
 interface AuthContextValue {
   currentUser: User | null;
@@ -77,6 +79,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       (userCredential: UserCredential) => {
         const user = userCredential.user;
         updateProfile(user, { displayName: userName });
+        const specificId = user?.uid;
+        const specificDocRef = doc(driverDataCollection, specificId);
+        setDoc(specificDocRef, { status: ApplicationStatus.NotApplied });
       }
     );
   };
